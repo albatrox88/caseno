@@ -1,0 +1,313 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="project">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="language" content="English">
+  
+ 
+  <title>JUwatash Palace</title>
+ 
+ 
+  <!-- bootstrap file -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- bootstrap file-->
+ 
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+  <!-- main css -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+ 
+ 
+ 
+  <!--_______________________________________________-->
+ 
+ 
+ 
+</head>
+ 
+
+<body class="container-fluid">
+ <header>
+  <div class="top-bar">
+    <div class="social-icons">
+      <a href="https://www.facebook.com/astrajuwapalacee" target="_blank">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.675 0H1.325C0.593 0 0 0.593 0 1.325V22.675C0 23.407 0.593 24 1.325 24H12.82V14.708H9.692V11.077H12.82V8.413C12.82 5.348 14.657 3.692 17.396 3.692C18.713 3.692 19.874 3.792 20.175 3.833V7.077H18.462C17.073 7.077 16.82 7.792 16.82 8.792V11.077H20.077L19.615 14.708H16.82V24H22.675C23.407 24 24 23.407 24 22.675V1.325C24 0.593 23.407 0 22.675 0Z" fill="#1877F2"/>
+          <path d="M19.615 14.708L20.077 11.077H16.82V8.792C16.82 7.792 17.073 7.077 18.462 7.077H20.175V3.833C19.874 3.792 18.713 3.692 17.396 3.692C14.657 3.692 12.82 5.348 12.82 8.413V11.077H9.692V14.708H12.82V24H16.82V14.708H19.615Z" fill="white"/>
+        </svg>
+      </a>
+      
+    </div>
+      
+    <div class="legal-links">
+        <a href="#">Disclaimer</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">DMCA</a>
+    </div>
+</div>
+
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="logo">
+            <img src="{% static 'images/logo.jpg' %}" alt="Gaming Logo">
+        </div>
+        <button class="menu-toggle" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="">Games</a>
+            <a href="#">Freeplay</a>
+            <a href="#">Free Spin</a>
+            <a href="#">Latest Updates</a>
+            <a href="#">Win iPhone 16</a>
+            {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link get-account-btn" style="padding: 0; color: inherit; text-decoration: none;">
+                        Logout
+                    </button>
+                    <li><a href="{% url 'delete_account' %}">Delete Account</a></li>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="get-account-btn">Get Account</a>
+            {% endif %}
+        </div>
+    </nav>
+</header>
+
+
+  <br/>
+  <br>
+  <br>
+  <div class="row">
+    {% block content %}
+    {% if user.is_authenticated %}
+    <section class="hero">
+      <div class="hero-content">
+          <h1>Welcome {{ user.username }} </h1>
+          <p>If you're ready to win big, join the ultimate gaming experience!</p>
+          <div class="hero-buttons">
+              <a href="" class="hero-btn primary">Get Freeplay now</a>
+              <a href="#platforms" class="hero-btn secondary">Explore Games</a>
+          </div>
+      </div>
+      <div class="hero-image">
+          <img src="{% static 'images/imgs.png' %}" alt="Gaming Logo">
+      </div>
+  </section>
+  <section class="platforms" id="platforms"> 
+    <h2 class="section-title">Available Platforms</h2>
+    <div class="platforms-grid">
+        <div class="platform-card">
+            <img src="{% static 'images/fire.jpg' %}"  alt="Orion Stars">
+            <h3>Orion Stars</h3>
+            <a href="http://orionstarsonline.com" class="download-btn">Download</a>
+           
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/game.jpg' %}"  alt="Fire Kirin">
+            <h3>Fire Kirin</h3>
+            <a href="https://firekirin.online" class="download-btn">Download</a>
+           
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/gg.jpg' %}"  alt="Juwa">
+            <h3>Juwa</h3>
+            <a href="http://dl.juwa777.com" class="download-btn">Download</a>
+          
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/jwaa.jpg' %}" alt="Million Maker">
+            <h3>Million Maker</h3>
+            <a href="#" class="download-btn">Download</a>
+           
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/orion.jpg' %}"  alt="Panda Master">
+            <h3>Panda Master</h3>
+            <a href="#" class="download-btn">Download</a>
+            
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/panda.jpg' %}"  alt="Lucky Panda">
+            <h3>Lucky Panda</h3>
+            <a href="https://pandamaster.vip:8888/index.html" class="download-btn">Download</a>
+            
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/wewe.jpg' %}"  alt="Game Rock">
+            <h3>Game Rock</h3>
+            <a href="#" class="download-btn">Download</a>
+            
+        </div>
+        <div class="platform-card">
+            <img src="{% static 'images/wnb.jpg' %}"  alt="Mega Win">
+            <h3>Mega Win</h3>
+            <a href="http://download.gamevault999.com" class="download-btn">Download</a>
+          
+        </div>
+    </div>
+  </section>
+  <!-- Available Platforms Section -->
+   
+
+    {% else %}
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1>100% Legit Gaming Platform</h1>
+            <p>If you're ready to win big, join the ultimate gaming experience!</p>
+            <div class="hero-buttons">
+                <a href="" class="hero-btn primary">Get Freeplay now</a>
+                <a href="{% url 'login' %}" class="hero-btn secondary">100% Signup Bonus</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'images/imgs.png' %}" alt="Gaming Logo">
+        </div>
+    </section>
+    <!-- Available Platforms Section -->
+<section class="platforms" id="platforms"> 
+  <h2 class="section-title">Available Platforms</h2>
+  <div class="platforms-grid">
+      <div class="platform-card">
+          <img src="{% static 'images/fire.jpg' %}"  alt="Orion Stars">
+          <h3>Orion Stars</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+         
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/game.jpg' %}"  alt="Fire Kirin">
+          <h3>Fire Kirin</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+         
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/gg.jpg' %}"  alt="Juwa">
+          <h3>Juwa</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+        
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/jwaa.jpg' %}" alt="Million Maker">
+          <h3>Million Maker</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+         
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/orion.jpg' %}"  alt="Panda Master">
+          <h3>Panda Master</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+          
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/panda.jpg' %}"  alt="Lucky Panda">
+          <h3>Lucky Panda</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+          
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/wewe.jpg' %}"  alt="Game Rock">
+          <h3>Game Rock</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+          
+      </div>
+      <div class="platform-card">
+          <img src="{% static 'images/wnb.jpg' %}"  alt="Mega Win">
+          <h3>Mega Win</h3>
+          <a href="{% url 'login' %}" class="download-btn">Download</a>
+        
+      </div>
+  </div>
+</section>
+    
+    {% endif %}
+    {% endblock %}
+  </div>
+  <!-- Hero Section -->
+  
+
+
+
+<!-- Weekly Winners Section -->
+<section class="weekly-winners">
+    <div class="winners-content">
+        <div class="winners-text">
+            <h2>Our Big Winners</h2>
+            <p>We award our big earners who got the most deposits and most cashouts with Freeplays and Extra deposit bonuses upto 100%</p>
+            <a href="https://www.facebook.com/astrajuwapalacee" class="join-btn">+ Join Us Now</a>
+        </div>
+        <div class="winners-gallery">
+            <img src="/placeholder.svg?height=200&width=300" alt="Winner Screenshot 1">
+            <img src="/placeholder.svg?height=200&width=300" alt="Winner Screenshot 2">
+            <img src="/placeholder.svg?height=200&width=300" alt="Winner Screenshot 3">
+            <img src="/placeholder.svg?height=200&width=300" alt="Winner Screenshot 4">
+        </div>
+    </div>
+</section>
+
+<!-- Connect Section -->
+<section class="connect">
+    <div class="connect-content">
+        <h2 class="section-title">Connect With Us</h2>
+        <div class="connect-grid">
+            <div class="connect-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>Houston, TX, United States, Texas</p>
+            </div>
+            <div class="connect-item">
+                <i class="fab fa-whatsapp"></i>
+                <h3>Telegram</h3>
+                <p>+1 2345 55556</p>
+            </div>
+            <div class="connect-item">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>admin@spincitygaming.us</p>
+            </div>
+        </div>
+        <div class="message-buttons">
+            <a href="#" class="message-btn facebook">
+                <i class="fab fa-facebook-messenger"></i>
+                Message us
+            </a>
+            <a href="#" class="message-btn instagram">
+                <i class="fab fa-instagram"></i>
+                Message us
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="links">
+        <a href="#">Disclaimer</a>
+        <a href="#">Terms & Conditions</a>
+        <a href="#">Privacy Policy</a>
+        
+    </div>
+    <p>Copyright © 2024 Stallion Juwa Palace</p>
+</footer>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+ 
+</html>
